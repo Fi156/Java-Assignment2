@@ -46,7 +46,7 @@ public class TextOut {
  
 			File file = new File(filename);
 			// Opens a new object from the class FileWriter with the absolute file path. 
-			// Adding "true" for appending to existing file data.
+			// Adding "true" for appending to existing file data instead of deleting existing data.
 			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			// Writes the content from text.
@@ -61,6 +61,7 @@ public class TextOut {
 		}
 
 	}	
+
 
 
 	//Begin of kml-File as variable. Sets Version, Encoding and starts the File with document and the Layer name.
@@ -99,9 +100,14 @@ public class TextOut {
 	
 	
 	
-	// Method to generate a new polygon object. You need to provide the feature name, a description and the coordinates as string.
+	// Method to generate a new polygon object. You need to provide the feature name, a description and 
+		// the coordinates as string.	
 	// Coordinates needs a format like: 13.03941, 47.82361 13.06024, 47.78861. 
 	//(Coordinate pairs where separated with a space.)____|
+// This method was tested with QGis 2.6.1 and works with it. However the kml File created by this method does not
+// work with QGis 2.4 and Google Earth. Most likely: The coordinate String from the PostgreSQL-Database uses
+// another comma formatting than kml. Sadly, further testing was not possible due to the fact that I was not
+// able to connect to the server without access to the Lab at the weekend.
 	public static String  kmlNewPolygon (String name, String descr, String coords)
 	{
 		String out, Placem1, Placem2, Name1, Name2, Descr1, Descr2, Coords1, Coords2;
@@ -126,6 +132,7 @@ public class TextOut {
 		// Returns out to the method.
 		return out;
 	}
+
 
 	//End of KML-File. Closes document and kml only...
 	public static String kmlEnd = 				
@@ -156,7 +163,7 @@ public class TextOut {
 	
 	
 	
-	//Test string straight from the lecture. (Testing only...)
+	//Test string straight from the lecture. 
 	public static String kmlComplete = 
 		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
 		"<kml xmlns=\"http://www.opengis.net/kml/2.2\">" +
