@@ -22,7 +22,7 @@ public class PostgresToKml {
 			ResultSet rs = statement.executeQuery(query); //The data of the table is now stored in rs. 
 			
 			
-			String filename = "assignment02_centroid.kml";
+			String filename = "austria_nuts3_centro.kml";
 			TextOut.WriteToFile(filename, TextOut.kmlBegin);
 
 			//TextOut.AppendToFile(filename, TextOut.kmlNewPolygon("x","x",TextOut.testPoly1));
